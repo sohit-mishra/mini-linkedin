@@ -156,4 +156,4 @@ npm run dev
 
 - GitHub: https://github.com/sohit-mishra/mini-linkedin.git
 - Live: https://mini-linkedin.onrender.com
-- Email: ciaancybertech@gmail.com, hr@ciaancybertech.com
+
