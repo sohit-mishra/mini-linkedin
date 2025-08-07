@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import api from '@/utils/api';
 import { showError } from '@/utils/toast';
 import Post from '@/components/Post';
+import avatar from '@/assets/avatar.svg';
 
 export default function AdminProfile() {
   const [user, setUser] = useState(null);
@@ -53,7 +54,7 @@ export default function AdminProfile() {
     >
       <div className="flex items-center gap-6 border-b pb-6 mb-6">
         <img
-          src={user.avatar || '/default-avatar.png'}
+          src={user.avatar || avatar}
           alt="Avatar"
           className="w-24 h-24 rounded-full object-cover border"
         />

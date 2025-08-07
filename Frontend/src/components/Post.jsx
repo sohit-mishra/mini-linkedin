@@ -6,6 +6,7 @@ import { Trash, ThumbsUp, MessageCircle, Share2 } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { AuthContext } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import avatar from '@/assets/avatar.svg';
 
 export default function Post({ post, onDelete }) {
   const navigate = useNavigate();
@@ -105,7 +106,7 @@ export default function Post({ post, onDelete }) {
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3" onClick={()=> handlePublicPage(post.authorID._id)}>
           <img
-            src={post.authorID?.avatar || "/default-avatar.png"}
+            src={post.authorID?.avatar || avatar}
             alt="avatar"
             className="w-10 h-10 rounded-full object-cover"
           />
@@ -201,7 +202,7 @@ export default function Post({ post, onDelete }) {
                 <div className="mb-4">
                   <div className="flex items-start gap-3">
                     <img
-                      src={comment.user?.avatar || "/default-avatar.png"}
+                      src={comment.user?.avatar || avatar}
                       alt="avatar"
                       className="w-8 h-8 rounded-full object-cover"
                     />

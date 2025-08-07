@@ -4,6 +4,7 @@ import api from '@/utils/api';
 import { showError } from '@/utils/toast';
 import Post from '@/components/Post';
 import { useParams } from 'react-router-dom';
+import avatar from '@/assets/avatar.svg';
 
 export default function PublicProfile() {
   const {id} = useParams();
@@ -55,7 +56,7 @@ export default function PublicProfile() {
     >
       <div className="flex items-center gap-6 border-b pb-6 mb-6">
         <img
-          src={user.avatar || '/default-avatar.png'}
+          src={user.avatar || avatar}
           alt="Avatar"
           className="w-24 h-24 rounded-full object-cover border"
         />
