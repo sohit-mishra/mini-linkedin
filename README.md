@@ -6,7 +6,7 @@ It allows users to register, create posts (text & image), interact with others, 
 
 ## 🌐 Live Demo
 
-🔗 **Live URL**: https://mini-linkedin.onrender.com
+🔗 **Live URL**: https://mini-linkedin-3p4z.onrender.com
 📂 **GitHub Repository**: https://github.com/sohit-mishra/mini-linkedin.git
 
 ---
@@ -155,5 +155,5 @@ npm run dev
 ## 📧 Submission
 
 - GitHub: https://github.com/sohit-mishra/mini-linkedin.git
-- Live: https://mini-linkedin.onrender.com
+- Live: https://mini-linkedin-3p4z.onrender.com
 
