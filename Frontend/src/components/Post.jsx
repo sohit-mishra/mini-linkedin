@@ -77,7 +77,7 @@ export default function Post({ post, onDelete }) {
 
   const handleShare = (post) => {
     const shareData = {
-      url: window.location.origin + "/postId/" + post._id,
+      url: window.location.origin + "/post/" + post._id,
     };
 
     if (navigator.share) {
