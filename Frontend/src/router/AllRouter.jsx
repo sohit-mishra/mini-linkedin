@@ -1,21 +1,22 @@
-import React from "react"
-import { Routes, Route } from "react-router-dom"
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
-import Login from "@/pages/Login"
-import Signup from "@/pages/Signup"
-import ForgetPassword from "@/pages/ForgetPassword"
-import ConfirmPassword from "@/pages/ConfirmPassword"
-import Otp from "@/pages/Otp"
+import Login from "@/pages/Login";
+import Signup from "@/pages/Signup";
+import ForgetPassword from "@/pages/ForgetPassword";
+import ConfirmPassword from "@/pages/ConfirmPassword";
+import Otp from "@/pages/Otp";
 
-import PrivateLayout from "@/Layout/PrivateLayout"
+import PrivateLayout from "@/Layout/PrivateLayout";
+import PrivateRoute from "@/router/PrivateRoute";
 
-import Home from '@/pages/Home'
-import Profile from "@/pages/Profile"
-import CreatePost from "@/pages/CreatePost"
-import PublicProfile from "@/pages/PublicProfile"
-import PageNotFound from "@/pages/PageNotFound"
-import AdminProfile from "@/pages/AdminProfile"
-import SinglePost from '@/pages/SinglePost'
+import Home from "@/pages/Home";
+import Profile from "@/pages/Profile";
+import CreatePost from "@/pages/CreatePost";
+import PublicProfile from "@/pages/PublicProfile";
+import PageNotFound from "@/pages/PageNotFound";
+import AdminProfile from "@/pages/AdminProfile";
+import SinglePost from "@/pages/SinglePost";
 
 export default function AllRouter() {
   return (
@@ -26,17 +27,24 @@ export default function AllRouter() {
       <Route path="/confirm-password/:token" element={<ConfirmPassword />} />
       <Route path="/otp" element={<Otp />} />
 
-      <Route element={<PrivateLayout />}>
+  
+      <Route
+        element={
+          <PrivateRoute>
+            <PrivateLayout />
+          </PrivateRoute>
+        }
+      >
         <Route path="/" element={<Home />} />
         <Route path="/setting/profile" element={<Profile />} />
         <Route path="/profile" element={<AdminProfile />} />
         <Route path="/create-post" element={<CreatePost />} />
-         <Route path="/postId/:id" element={<SinglePost />} />
+        <Route path="/post/:id" element={<SinglePost />} />
         <Route path="/user/:id" element={<PublicProfile />} />
       </Route>
 
+  
       <Route path="*" element={<PageNotFound />} />
     </Routes>
-
-  )
+  );
 }

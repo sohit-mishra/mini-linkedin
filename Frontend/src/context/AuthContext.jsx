@@ -4,15 +4,15 @@ import axios from "axios";
 export const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [token, setToken] = useState(() => localStorage.getItem("token") || "");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [loading, setLoading] = useState(true); 
-  const [userId, setUserId] = useState('');
-
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const verifyToken = async () => {
       const localToken = localStorage.getItem("token");
+
       if (!localToken) {
         setLoading(false);
         return;
@@ -28,17 +28,21 @@ export const AuthContextProvider = ({ children }) => {
           }
         );
 
+        const user = response.data?.user;
 
-        if (response.status === 200) {
+        if (response.status === 200 && user?.id) {
           setToken(localToken);
           setIsLoggedIn(true);
-          setUserId(response.data.user.id)
+          setUserId(user.id);
+        } else {
+          throw new Error("Invalid response");
         }
       } catch (error) {
-        console.error("Token verification failed:", error);
-        setIsLoggedIn(false);
+        console.error("Token verification failed:", error.message);
         localStorage.removeItem("token");
         setToken("");
+        setIsLoggedIn(false);
+        setUserId("");
       } finally {
         setLoading(false);
       }
@@ -53,6 +57,9 @@ export const AuthContextProvider = ({ children }) => {
         const newToken = event.newValue || "";
         setToken(newToken);
         setIsLoggedIn(!!newToken);
+        if (!newToken) {
+          setUserId("");
+        }
       }
     };
 
@@ -64,8 +71,8 @@ export const AuthContextProvider = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="w-full p-4">
-        <div className="text-center mb-2">Loading...</div>
+      <div className="w-full p-4 text-center">
+        <p>Loading...</p>
       </div>
     );
   }
@@ -77,7 +84,9 @@ export const AuthContextProvider = ({ children }) => {
         setIsLoggedIn,
         token,
         setToken,
-        userId, setUserId
+        userId,
+        setUserId,
+        loading,
       }}
     >
       {children}
